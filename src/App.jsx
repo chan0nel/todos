@@ -6,8 +6,8 @@ import { ListTodos } from './components/ListTodos';
 function App() {
   return (
     <div className="App">
-      <InputTodo></InputTodo>
-      <ListTodos></ListTodos>
+      <InputTodo />
+      <ListTodos />
     </div>
   );
 }

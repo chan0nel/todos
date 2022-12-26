@@ -1,5 +1,4 @@
-import { memo } from "react";
-import { useState } from "react";
+import { React, memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { add } from "../app/todosSlice";
 import classNames from "classnames";
@@ -12,16 +11,15 @@ export const InputTodo = memo(() => {
         setText(e.target.value);
     }
 
-    const addClick = (e) => {
-        e.preventDefault();
+    const addClick = () => {
         if(text !== '')
             dispatch(add({value: text}))
     }
 
     return (
-        <form>
+        <>
             <input className={classNames({unable: text === ''})} onChange={change}/>
             <button onClick={addClick}>add</button>
-        </form>
+        </>
     );
 });

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { React, memo } from "react";
 import { useDispatch } from "react-redux";
 import { clear, removeComleted } from "../app/todosSlice";
 

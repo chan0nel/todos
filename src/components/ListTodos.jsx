@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { React, memo } from 'react'
 import { useSelector } from 'react-redux'
 import { ClearButtons } from './ClearButtons'
 import { ItemTodo } from './ItemTodo';
@@ -11,13 +11,15 @@ export const ListTodos = memo(() => {
     );
 
     return (<>
-        {listItems.length !== 0 ?
-            (<div class="list">
-                <ClearButtons></ClearButtons>
+        {
+            listItems.length !== 0
+            ? (
+            <div>
+                <ClearButtons />
                 <ul>{listItems}</ul>
-            </div>)
+            </div>
+            )
             : <p>nothing to do</p>
         }
-    </>
-    );
+    </>);
 });
