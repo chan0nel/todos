@@ -1,13 +1,12 @@
-import { React, memo } from 'react'
-import { useSelector } from 'react-redux'
+import { React } from 'react'
 import { ClearButtons } from './ClearButtons'
-import { ItemTodo } from './ItemTodo';
+import { ItemTodo } from './ItemTodo'
+import { observer } from 'mobx-react'
 
-export const ListTodos = memo(() => {
-    const list = useSelector(state => state.todos.todos);
+export const ListTodos = observer(({todos}) => {
 
-    const listItems = list.map(
-        (el) => <ItemTodo key={el.key} index={el.key} value={el.value} completed={el.completed}></ItemTodo>
+    const listItems = todos.list.map(
+        (todo) => <ItemTodo key={todo.key} todo={todo} todos={todos}></ItemTodo>
     );
 
     return (<>
@@ -15,7 +14,7 @@ export const ListTodos = memo(() => {
             listItems.length !== 0
             ? (
             <div>
-                <ClearButtons />
+                <ClearButtons todos={todos}/>
                 <ul>{listItems}</ul>
             </div>
             )

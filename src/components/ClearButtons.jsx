@@ -1,22 +1,20 @@
-import { React, memo } from "react";
-import { useDispatch } from "react-redux";
-import { clear, removeComleted } from "../app/todosSlice";
+import { observer } from 'mobx-react'
+import { React } from "react";
 
-export const ClearButtons = memo(() => {
-    const dispatch = useDispatch()
+export const ClearButtons = observer(({todos}) => {
 
     const clearAllClick = () => {
-        dispatch(clear());
+        todos.clear()
     }
 
     const clearCompletedClick = () => {
-        dispatch(removeComleted());
+        todos.removeCompleted()
     }
 
     return (
         <>
             <button onClick={clearAllClick}>clear all</button>
-            <button onClick={clearCompletedClick}>clear completed</button>
+            <button onClick={clearCompletedClick} disabled={!todos.haveCompleted}>clear completed</button>
         </>
     );
 });

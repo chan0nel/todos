@@ -1,10 +1,8 @@
-import { React, memo, useState } from "react";
-import { useDispatch } from "react-redux";
-import { add } from "../app/todosSlice";
+import { React, useState } from "react";
 import classNames from "classnames";
+import { observer } from 'mobx-react'
 
-export const InputTodo = memo(() => {
-    const dispatch = useDispatch();
+export const InputTodo = observer(({todos}) => {
     const [text, setText] = useState('');
 
     const change = (e) => {
@@ -13,7 +11,7 @@ export const InputTodo = memo(() => {
 
     const addClick = () => {
         if(text !== '')
-            dispatch(add({value: text}))
+            todos.add(text);
     }
 
     return (

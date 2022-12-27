@@ -1,21 +1,20 @@
-import { React, memo } from 'react'
-import { useDispatch } from 'react-redux'
-import { remove, toggle } from '../app/todosSlice';
-import classNames from 'classnames';
+import { React } from 'react'
+import classNames from 'classnames'
+import { observer } from 'mobx-react'
 
-export const ItemTodo = memo(({index, value, completed}) => {
-    const dispatch = useDispatch();
+export const ItemTodo = observer(({todo, todos}) => {
+    const { key, value, completed } = todo;
 
     const clk = (e) => {
-        if (e.detail === 1) dispatch(toggle({key: index}))
-        else if (e.detail === 2) dispatch(remove({key: index}))
+        if (e.detail === 1) todos.toggle(key);
+        else if (e.detail === 2) todos.remove(key);
         return
     }
 
     return (
         <li className={classNames({completed: completed})}>
-            <label htmlFor={index}>
-                <input type="checkbox" id={index} onClick={clk} defaultChecked={completed}/>
+            <label htmlFor={key}>
+                <input type="checkbox" id={key} onClick={clk} defaultChecked={completed}/>
                 {value}
             </label>
         </li>
